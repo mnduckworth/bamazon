@@ -42,9 +42,11 @@ function start(){
 				if(resp[i].item_id == response.id){
 					if(resp[i].stock_quantity < response.quantity){
 						console.log("Sorry quantity is too low.");
-					};
-					connection.query("update products set stock_quantity = " + (resp[i].stock_quantity - response.quantity) + " where item_id = " + response.id);
-					console.log("The total cost of your purchase was " + (resp[i].price * response.quantity));
+					}
+					else{
+						connection.query("update products set stock_quantity = " + (resp[i].stock_quantity - response.quantity) + " where item_id = " + response.id);
+						console.log("The total cost of your purchase was " + (resp[i].price * response.quantity));
+					}
 				};
 			};
 		});
